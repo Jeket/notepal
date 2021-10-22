@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Note;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/notes', function () {
+    return view('notes.index', [
+        'notes' => Note::paginate(),
+    ]);
+})->name('notes.index');
 
 require __DIR__.'/auth.php';

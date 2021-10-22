@@ -6,13 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "doctrine/dbal": "^3.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/breeze": "^1.4",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "league/commonmark": "^2.0"
+        "league/commonmark": "^2.0",
+        "spatie/laravel-sluggable": "^3.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -22,7 +24,8 @@
         "nunomaduro/collision": "^5.10",
         "pestphp/pest": "^1.20",
         "pestphp/pest-plugin-laravel": "^1.1",
-        "phpunit/phpunit": "^9.5.10"
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-stubs": "^2.2"
     },
     "autoload": {
         "psr-4": {
