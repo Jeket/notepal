@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use App\Support\Markdown\Markdown;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Sluggable\SlugOptions;
 
 class Note extends Model
 {
@@ -16,7 +17,7 @@ class Note extends Model
 
     public function getNumberOfWordsAttribute(): int
     {
-        return str_word_count($this->content ?? '');
+        return str_word_count(strip_tags($this->rendered_content) ?? '');
     }
 
     public function getReadingTimeAttribute(): int
@@ -27,6 +28,11 @@ class Note extends Model
         $readingTime = ceil($wordCount / $averageWordsPerMinute);
 
         return $readingTime < 1 ? 1 : $readingTime;
+    }
+
+    public function getRenderedContentAttribute()
+    {
+        return (new Markdown)->convert($this->content);
     }
 
     public function getSlugOptions(): SlugOptions

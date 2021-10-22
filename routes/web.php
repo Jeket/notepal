@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
         return view('notes.edit', [
             'note' => $note,
         ]);
-    });
+    })->name('notes.edit');
 });
 
 require __DIR__.'/auth.php';
