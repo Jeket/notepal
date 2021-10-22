@@ -35,6 +35,13 @@ class EditForm extends Component implements HasForms
         return $markdown->convert($this->note->content);
     }
 
+    public function setNoteTitle(string $title)
+    {
+        $this->note->update(['title' => $title]);
+
+        return $this->redirectRoute('notes.edit', $this->note);
+    }
+
     public function updatedNoteContent()
     {
         $this->validateOnly('note.content');
