@@ -22,10 +22,18 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/notes', function () {
-    return view('notes.index', [
-        'notes' => Note::paginate(),
-    ]);
-})->name('notes.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/notes', function () {
+        return view('notes.index', [
+            'notes' => Note::paginate(),
+        ]);
+    })->name('notes.index');
+
+    Route::get('/notes/{note:slug}', function (Note $note) {
+        return view('notes.edit', [
+            'note' => $note,
+        ]);
+    });
+});
 
 require __DIR__.'/auth.php';
